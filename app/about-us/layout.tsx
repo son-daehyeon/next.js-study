@@ -1,8 +1,14 @@
-export default function AboutUsLayout({ children }: { children: React.ReactNode }) {
-    return (
-        <div>
-            {children}
-            &copy; Next JS is great!
-        </div>
-    )
+import { ReactNode } from 'react';
+
+interface IAboutUsLayoutProps {
+  children: ReactNode;
+}
+
+export default function AboutUsLayout({ children }: IAboutUsLayoutProps) {
+  return (
+    <div>
+      {children}
+      &copy; Next JS is great!
+    </div>
+  );
 }

@@ -1,19 +1,30 @@
 import { API_URL } from '../contants';
+
 import styles from '../../styles/movie-videos.module.css';
 
+interface IMovieVideosProps {
+  id: string;
+}
+
+interface IVideo {
+  id: string;
+  key: string;
+  name: string;
+}
+
 async function getVideos(id: string) {
-  console.log(`Fetching videos: ${Date.now()}`);
-  // await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await fetch(`${API_URL}/${id}/videos`);
   const videos = await response.json();
+
   return videos.slice(0, 3);
 }
 
-export default async function MovieVideos({ id }: { id: string }) {
+export default async function MovieVideos({ id }: IMovieVideosProps) {
   const videos = await getVideos(id);
+
   return (
     <div className={styles.container}>
-      {videos.map((video) => (
+      {videos.map((video: IVideo) => (
         <iframe
           key={video.id}
           src={`https://youtube.com/embed/${video.key}`}
